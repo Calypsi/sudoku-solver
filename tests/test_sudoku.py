@@ -24,3 +24,4 @@ def test_create_sqr():
 def test_num_sqr():
     assert len(sudoku.squares) == 81
 
+
