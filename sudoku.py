@@ -71,24 +71,20 @@ def set_known_values(square_keys, puzzle_values):
     for k, v in known_val.items():
         square_val[k] = v
 
-
-
     return square_val
 
+def compare_values(grid_values):
+    for k, v in list(grid_values.items()):
+        if len(v) == 1:
+            for square in check_group[k]:
+                if len(grid_values[square]) != 1:
+                    try:
+                        grid_values[square].remove(v)
+                    except ValueError:
+                        pass
+    return grid_values
 
 
-
-def check_row():
-
-    pass
-
-def check_col():
-
-    pass
-
-def check_block():
-
-    pass
 
 def remove_knowns():
 
@@ -104,7 +100,8 @@ def remove_knowns():
 
 
 def main():
-    pprint(set_known_values(square_keys, puzzle_values))
+    assert compare_values(compare_values(set_known_values(square_keys, puzzle_values))) == \
+    compare_values(set_known_values(square_keys, puzzle_values))
 
 
 if __name__ == "__main__":
