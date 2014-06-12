@@ -1,4 +1,5 @@
 import time
+from pprint import pprint
 
 
 row_labels = 'ABCDEFGHI'
@@ -22,7 +23,10 @@ squares = dict((square, [item for item in check_list if square in item])
 check_group = dict((square, set(sum(squares[square], []))-set([square]))
                    for square in square_keys)
 
-puzzle_values = '7...3.....6....97....9...565.......3.4......72..61....3.1..4.........56...7.2....'
+puzzle_values = ('7...3.....6....97....9...56'
+                 '5.......3.4......72..61....'
+                 '3.1..4.........56...7.2....'
+                 )
 
 def create_puzzle_row(row_slice):
     row_1 = ''
@@ -39,7 +43,6 @@ def create_puzzle_row(row_slice):
         row_3 = row_3 + (char + ' ')
 
     formatted_row = row_1 + '| ' + row_2 + '| ' + row_3
-    print(formatted_row)
     return formatted_row
 
 def create_block_row(block_slice):
@@ -61,10 +64,51 @@ def create_grid(puzzle_values):
 
     return grid
 
-def main():
-    create_grid(puzzle_values)
+def set_known_values(square_keys, puzzle_values):
 
-main()
+    square_val = dict((square, list(digits)) for square in square_keys)
+    known_val = dict((k, v) for k, v in zip(square_keys, puzzle_values) if v != '.')
+    for k, v in known_val.items():
+        square_val[k] = v
+
+
+
+    return square_val
+
+
+
+
+def check_row():
+
+    pass
+
+def check_col():
+
+    pass
+
+def check_block():
+
+    pass
+
+def remove_knowns():
+
+    pass
+
+
+
+
+
+
+
+
+
+
+def main():
+    pprint(set_known_values(square_keys, puzzle_values))
+
+
+if __name__ == "__main__":
+    main()
 
 # test puzzle from www.puzzles.ca - easy puzzle #159 and solution
 # '7...3.....6....97....9...565.......3.4......72..61....3.1..4.........56...7.2....'

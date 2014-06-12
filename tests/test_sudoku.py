@@ -70,3 +70,10 @@ def test_create_grid():
         '. . . | . . . | 5 6 . \n'
         '. . 7 | . 2 . | . . . \n'
     )
+
+def test_check_row():
+
+
+# def test_check_col():
+
+# def test_check_block():
