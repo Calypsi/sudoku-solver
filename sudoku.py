@@ -73,7 +73,7 @@ def set_known_values(square_keys, puzzle_values):
 
     return square_val
 
-def compare_values(grid_values):
+def remove_knowns(grid_values):
     for k, v in list(grid_values.items()):
         if len(v) == 1:
             for square in check_group[k]:
@@ -84,29 +84,40 @@ def compare_values(grid_values):
                         pass
     return grid_values
 
+# def compare_unknowns(grid_values):
+#     for k, v in list(grid_values.items()):
+#         if len(v) > 1:
+#             for square in check_group[k]:
+#                 for digit in grid_values[square]:
+#                     for square2 in check_group[k]:
+#                         if digit not in grid_values[square2]:
+#                             if len(grid_values[square2]) > 1:
+#                                 grid_values[square2] = digit
+#     return grid_values
 
 
-def remove_knowns():
-
+def find_single_options_left(group):
     pass
 
-
-
-
-
+def group_flip(group):
+    digit_group = {digit: set() for digit in digits}
+    for k, v in group.items():
+        for val in v:
+            digit_group[val].add(k)
+    return digit_group
 
 
 
 
 
 def main():
-    assert compare_values(compare_values(set_known_values(square_keys, puzzle_values))) == \
-    compare_values(set_known_values(square_keys, puzzle_values))
+    # assert compare_values(compare_values(set_known_values(square_keys, puzzle_values))) == \
+    pprint(group_flip(remove_knowns(set_known_values(square_keys, puzzle_values))))
 
 
 if __name__ == "__main__":
     main()
 
-# test puzzle from www.puzzles.ca - easy puzzle #159 and solution
+# test puzzle from http://www.puzzles.ca/sudoku.html - easy puzzle #159 and solution
 # '7...3.....6....97....9...565.......3.4......72..61....3.1..4.........56...7.2....'
 # '795236148863451972412978356579842613146395287238617495381564729924783561657129834'
